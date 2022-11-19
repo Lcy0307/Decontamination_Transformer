@@ -1,0 +1,1 @@
+python test.py --dataset imagenet --ckpt checkpoint/RRtrans_cotrain/checkpoint.pt
