@@ -14,7 +14,7 @@ cd Decontamination_Transformer
 
 - We provide a conda environment script, please run the following command after cloning our repo.
 ```
-conda env create -f vqi2i_env.yml
+conda env create -f environment.yml
 ```
 ## Datasets
 - FFHQ dataset: You can follow the instructions in FFHQ [website](https://github.com/NVlabs/ffhq-dataset) to download the FFHQ dataset.
@@ -42,7 +42,7 @@ conda env create -f vqi2i_env.yml
 - "./data_load/imagenet_test.txt"
 
 ## Training
-More instructions can be found in train.sh for other dataset.
+More instructions can be found in train.sh for other dataset. Our model is trained on an Single RTX 3090 GPU.
 #### Generating free-form mask of validation set
 We generate 1000 free-form mask for validation sets.
 ```
