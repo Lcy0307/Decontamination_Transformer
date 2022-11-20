@@ -33,24 +33,15 @@
 
 <div id="header" class="container-fluid">
     <div class="row">
-        <h1>Vector Quantized Image-to-Image Translation</h1>
+        <h1>Decontamination Transformer for Blind Image Inpainting</h1>
 
         <div class="authors">
-            <a href="mailto:cyj407.cs09g@nctu.edu.tw" target="_blank">Yu-Jie Chen*</a>,
-            <a href="mailto:shinicheng.cs09g@nctu.edu.tw" target="_blank">Shin-I Cheng*</a>,
+            <a href="mailto:lcvy.cs09g@nctu.edu.tw" target="_blank">Chun-Yi Li</a>,
             <a href="https://walonchiu.github.io/" target="_blank">Wei-Chen Chiu</a>,
-            <a href="https://hytseng0509.github.io/" target="_blank">Hung-Yu Tseng</a>,
-            <a href="http://hsinyinglee.com/" target="_blank">Hsin-Ying Lee</a>
-            <center>(* denotes equal contribution)</center>
+            <a href="https://sites.google.com/site/yylinweb/" target="_blank">Yen-Yu Lin</a>,
 
             <p style="text-align:center;">
                 National Chiao Tung University, Taiwan 
-                <br>
-                MediaTek-NCTU Research Center, Taiwan
-                <br>
-                Facebook
-                <br>
-                Sanp. Inc.
             </p>
         </div>
     </div>
@@ -61,15 +52,7 @@
 		<div class="mx-auto">
 			<ul class="nav">
 				<li class="nav-item text-center" style="display: inline-block;">
-					<a href="http://arxiv.org/abs/2207.13286" class="nav-link">
-						<svg style="width:50px;height:50px;" viewBox="0 0 16 16">
-							<path fill="currentColor" d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"/>
-  							<path fill="currentColor" d="M4.5 12.5A.5.5 0 0 1 5 12h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm0-2A.5.5 0 0 1 5 10h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zm1.639-3.708 1.33.886 1.854-1.855a.25.25 0 0 1 .289-.047l1.888.974V8.5a.5.5 0 0 1-.5.5H5a.5.5 0 0 1-.5-.5V8s1.54-1.274 1.639-1.208zM6.25 6a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5z"/>
-						</svg><br>
-						Paper
-					</a>
-				<li class="nav-item text-center" style="display: inline-block;">
-					<a href="https://github.com/cyj407/VQ-I2I" class="nav-link">
+					<a href="https://github.com/Lcy0307/Decontamination_Transformer" class="nav-link">
 						<svg style="width:50px;height:50px" viewBox="0 0 16 16">
 							<path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z">
 						</svg><br>
@@ -78,7 +61,7 @@
 			</ul>
 		</div>
     </center>
-</div>
+<!-- </div>
 
  <div class="container" id="teaser">
     <div class="row">
@@ -86,12 +69,12 @@
             <img src="static/fig/teaser.png" width=90%>
         </p>
     </div>
-</div> 
+</div>  -->
 
 <div class="container" id="abstract">
     <h2>Abstract</h2>
     <p style="text-align: justify;">
-        Current image-to-image translation methods formulate the task with conditional generation models, leading to learning only the recolorization or regional changes as being constrained by the rich structural information provided by the conditional contexts. In this work, we propose introducing the vector quantization technique into the image-to-image translation framework. The vector quantized content representation can facilitate not only the translation, but also the unconditional distribution shared among different domains. Meanwhile, along with the disentangled style representation, the proposed method further enables the capability of image extension with flexibility in both intra- and inter-domains. Qualitative and quantitative experiments demonstrate that our framework achieves comparable performance to the state-of-the-art image-to-image translation and image extension methods. Compared to methods for individual tasks, the proposed method, as a unified framework, unleashes various applications combining image-to-image translation, unconditional generation, and image extension altogether. For example, it provides style variability for image generation and extension, and equips image-to-image translation with further extension capabilities.
+        Blind image inpainting aims at recovering the content from a corrupted image in which the mask indicating the corrupted regions is not available in inference time. Inspired that most existing methods for inpainting suffer from complex contamination, we propose a model that explicitly predicts the real-valued alpha mask and contaminant to eliminate the contamination from the corrupted image, thus improving the inpainting performance. To enhance the overall semantic consistency, the attention mechanism of transformers is exploited and integrated into our inpainting network. We conduct extensive experiments to verify our method against blind and non-blind inpainting models and demonstrate its effectiveness and generalizability to different sources of contaminant.
     </p>
 </div>
     
@@ -99,14 +82,28 @@
     <h2>Method</h2>
     <div class="row">
         <p style="text-align:center;">
-            <img src="static/fig/model_pg.png" width=90%>
+            <img src="static/fig/3-method.png" width=90%>
         </p>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <p style="text-align:center;">
             <img src="static/fig/tranformer_pg.png" width=90%>
         </p>
+    </div> -->
+</div> 
+
+<div class="container" id="results">
+    <h2>Result</h2>
+    <div class="row">
+        <p style="text-align:center;">
+            <img src="static/fig/Result.jpg" width=90%>
+        </p>
     </div>
+    <!-- <div class="row">
+        <p style="text-align:center;">
+            <img src="static/fig/tranformer_pg.png" width=90%>
+        </p>
+    </div> -->
 </div> 
 
 
@@ -248,7 +245,7 @@
 	</center>
 </div> -->
 
- <div class="container" id="paper">
+ <!-- <div class="container" id="paper">
     <h2>Citation</h2>
     <div>
         <pre class="citation">
@@ -260,7 +257,7 @@
 }
 		</pre>
     </div>
-</div> 
+</div>  -->
 
 <br>
 
