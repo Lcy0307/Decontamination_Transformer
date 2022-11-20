@@ -370,7 +370,7 @@ if __name__ == "__main__":
     gatedconv_optim = None
     val_list = []
 
-    from models.Stripformer_inpaint_final import RR_inpaint_model_minus_trans
+    from models.CPN_IIN import RR_inpaint_model_minus_trans
     from mpn_model_rename.architecture import Discriminator
 
     if args.use_gtmask is True:

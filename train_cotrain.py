@@ -388,7 +388,7 @@ if __name__ == "__main__":
     mask_model = None
     val_list = []
 
-    from models.Stripformer_inpaint_final import RR_inpaint_model_minus_trans
+    from models.CPN_IIN import RR_inpaint_model_minus_trans
     from mpn_model_rename.architecture import Discriminator, MPN
 
     mask_model = MPN().to(device)

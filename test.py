@@ -19,7 +19,7 @@ from dataset_test import Places2_strokemask, FFHQ_strokemask, ImageNet_strokemas
 from mask_utils import ConfidenceDrivenMaskLayer
 from metrics import lpips_measure, ssim, compute
 from mpn_model_rename.architecture import MPN
-from models.Stripformer_inpaint_final import RR_inpaint_model_minus_trans
+from models.CPN_IIN import RR_inpaint_model_minus_trans
 
 
 
@@ -49,9 +49,9 @@ if __name__ == "__main__":
     
     args = parser.parse_args()
 
-
+    # CPN and IIN
     gatedconv = RR_inpaint_model_minus_trans().to(device)
-
+    # MPN
     mask_model = MPN().to(device)
 
     ckpt_path = args.ckpt
