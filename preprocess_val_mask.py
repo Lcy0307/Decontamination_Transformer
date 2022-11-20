@@ -48,13 +48,13 @@ class VC_mask_generator():
         mask[mask<127] = 0
         return np.reshape(mask, (H, W, 1))
 
-
-output_dir = Path("val_mask")
-output_dir.mkdir(exist_ok=True)
-mask_gen = VC_mask_generator()
-for i in range(1000):
-    mask = mask_gen.generate(256,256)
-    cv2.imwrite("val_mask/binary_mask_{:03d}.png".format(i), mask)
+if __name__ == "__main__":
+    output_dir = Path("val_mask")
+    output_dir.mkdir(exist_ok=True)
+    mask_gen = VC_mask_generator()
+    for i in range(1000):
+        mask = mask_gen.generate(256,256)
+        cv2.imwrite("val_mask/binary_mask_{:03d}.png".format(i), mask)
 
 
 
