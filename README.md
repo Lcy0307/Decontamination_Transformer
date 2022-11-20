@@ -30,12 +30,26 @@ conda env create -f vqi2i_env.yml
 ...
 ```
 
-## First Stage of training
-### Take Places2 for example, you should first prepare the filelist.
+### Preprocessing
+#### Take Places2 for example, you should first prepare the filelist.
+##### Training
 - "./data_load/places2_train.txt"
 - "./data_load/places2_val.txt"
 - "./data_load/imagenet_train.txt"
 - "./data_load/imagenet_val.txt"
+##### Testing
+- "./data_load/places2_test.txt"
+- "./data_load/imagenet_test.txt"
+
+## Training
+More instructions can be found in train.sh for other dataset.
+#### Generating free-form mask of validation set
+We generate 1000 free-form mask for validation sets.
+```
+python preprocess_val_mask.py
+```
+
+### First stage
 ```
 # MPN
 python train_MPN.py --dataset places2 --output_dir mpn_places2_strokemask --iter 600001 --batch 16
@@ -43,13 +57,31 @@ python train_MPN.py --dataset places2 --output_dir mpn_places2_strokemask --iter
 python train_CPN_IIN.py --dataset places2 --output_dir RRtrans_gtmask_8_places2_stroke --use_gtmask --batch 8 --iter 600001
 ```
     
-## Second stage of training
+### Second stage
+Cotraining MPN, CPN and IIN.
 ```
 # cotrain MPN & CPN & IIN
 python train_cotrain.py --dataset places2 --inpaint_ckpt RRtrans_gtmask_8_places2_stroke/checkpoint.pt --mask_ckpt mpn_places2_strokemask/checkpoint.pt --output_dir RRtrans_cotrain_places2 --batch 8 --iter 200001
 ```
 
+## Testing
+More instructions can be found in test.sh for other dataset.
+### Using the pre-trained models
+- Download the [pre-trained models](https://drive.google.com/drive/folders/17ge5uhZM6QD9i37PUPTpVTLdyMgygVCQ?usp=sharing), here we provide the pre-trained models for the FFHQ, Places2, ImageNet datasets.
+```
+python test.py --dataset places2 --ckpt checkpoint/RRtrans_cotrain_all_loss_partial_noise_8_stroke_places2/checkpoint.pt
+```
+
+## Reproducibility
+If you want to reproduce the experimental results of our FFHQ model on training and testing, please preprocess the data by preprocess_data.py.
+We first resize FFHQ, CelebA, Imagenet images into 256x256 and save by PIL.
+Places2 and ImageNet should be fine by using original data.
+```
+python preprocess_data.py
+```
+
 
 ## Acknowledgments
-Our code is based on [VQGAN](https://github.com/CompVis/taming-transformers).
-The implementation of the disentanglement architecture is borrowed from [MUNIT](https://github.com/NVlabs/MUNIT).
+Our code is based on [stylegan2-pytorch](https://github.com/rosinality/stylegan2-pytorch).
+- The implementation of the gated convolution is borrowed from [GatedConvolution_pytorch](https://github.com/avalonstrel/GatedConvolution_pytorch).
+- The implementation of the intra/inter attention is borrowed from [Stripformer](https://github.com/pp00704831/Stripformer).
