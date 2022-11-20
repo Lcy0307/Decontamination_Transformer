@@ -5,7 +5,7 @@ In this paper, We propose a carefully-designed de-contamination model for the ta
 
 
 ## Installation and Environment
-- Prerequisities: Python 3.7 & Pytorch (at least 1.4.0) 
+- Prerequisities: Python 3.6 & Pytorch (at least 1.4.0) 
 - Clone this repo
 ```
 git clone https://github.com/Lcy0307/Decontamination_Transformer.git
