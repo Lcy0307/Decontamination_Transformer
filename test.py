@@ -164,8 +164,6 @@ if __name__ == "__main__":
                             normalize=True,
                             value_range=(0, 1),
                         )
-        if data_iter_step > 500:
-            break
             
     
     psnr_np = np.asarray(psnr_list)
