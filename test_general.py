@@ -15,7 +15,8 @@ import torch.distributed as dist
 from torchvision import transforms, utils
 from torchvision.datasets import ImageFolder
 from tqdm import tqdm
-from dataset_test import Places2_strokemask, FFHQ_strokemask, ImageNet_strokemask
+from dataset_test_general import Places2_noiseffhq_strokemask, FFHQ_noisepc2_strokemask, ImageNet_noisecolor_strokemask
+from dataset_test_general import Places2_irregularmask, FFHQ_irregularmask, ImageNet_irregularmask
 from mask_utils import ConfidenceDrivenMaskLayer
 from metrics import lpips_measure, ssim, compute
 from mpn_model_rename.architecture import MPN
@@ -35,11 +36,13 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--ckpt",
-        type=str,
-        default='./checkpoint/RRtrans_cotrain_all_loss_partial_noise_8_stroke_places2/checkpoint.pt',
+        type=str
     )
     parser.add_argument(
         "--save", action="store_true", help="save image"
+    )
+    parser.add_argument(
+        "--mode", type=int, default=0, help="different contaminant : 0, different mask shape : 1"
     )
     parser.add_argument(
         "--dataset",
@@ -61,18 +64,32 @@ if __name__ == "__main__":
     gatedconv.load_state_dict(ckpt["gatedconv"])
     mask_model.load_state_dict(mask_ckpt["mask_model"])
 
-    if args.dataset == "ffhq":
-        main_dataset = FFHQ_strokemask()
-    elif args.dataset == "places2":
-        main_dataset = Places2_strokemask()
-    elif args.dataset == "imagenet":
-        main_dataset = ImageNet_strokemask()
-    data_loader_test = torch.utils.data.DataLoader(
-        main_dataset,
-        batch_size=20,
-        num_workers=10,
-        shuffle=False
-    )
+    if args.mode == 0:
+        if args.dataset == "ffhq":
+            main_dataset = FFHQ_noisepc2_strokemask()
+        elif args.dataset == "places2":
+            main_dataset = Places2_noiseffhq_strokemask()
+        elif args.dataset == "imagenet":
+            main_dataset = ImageNet_noisecolor_strokemask()
+        data_loader_test = torch.utils.data.DataLoader(
+            main_dataset,
+            batch_size=1,
+            num_workers=10,
+            shuffle=False
+        )
+    else:
+        if args.dataset == "ffhq":
+            main_dataset = FFHQ_irregularmask()
+        elif args.dataset == "places2":
+            main_dataset = Places2_irregularmask()
+        elif args.dataset == "imagenet":
+            main_dataset = ImageNet_irregularmask()
+        data_loader_test = torch.utils.data.DataLoader(
+            main_dataset,
+            batch_size=1,
+            num_workers=10,
+            shuffle=False
+        )
 
     smoother = ConfidenceDrivenMaskLayer(iters=4).to(device)
     criterion = nn.MSELoss()
@@ -99,6 +116,10 @@ if __name__ == "__main__":
             masks = masks.to(device)
             noise = noise.to(device)
             gt = gt.to(device)
+            
+            # Quantization
+            masks[masks > 0.5] = 1.
+            masks[masks < 0.5] = 0.
 
             smooth_masks = smoother(1 - masks) + masks
             smooth_masks = torch.clamp(smooth_masks, min=0., max=1.)
@@ -164,8 +185,6 @@ if __name__ == "__main__":
                             normalize=True,
                             value_range=(0, 1),
                         )
-        if data_iter_step > 500:
-            break
             
     
     psnr_np = np.asarray(psnr_list)

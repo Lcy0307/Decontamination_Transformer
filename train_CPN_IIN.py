@@ -227,49 +227,49 @@ def train(args, main_loader, gatedconv, discriminator, gatedconv_optim, optimize
                         f"{str(output_dir)}/masks.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(0, 1),
+                        value_range=(0, 1),
                     )
                 utils.save_image(
                         corrupt_img,
                         f"{str(output_dir)}/corrupt_img.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
                 utils.save_image(
                         output,
                         f"{str(output_dir)}/complete.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
                 utils.save_image(
                         predict_imgs,
                         f"{str(output_dir)}/predict.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
                 utils.save_image(
                         imgs,
                         f"{str(output_dir)}/imgs.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
                 utils.save_image(
                         blend_imgs,
                         f"{str(output_dir)}/noise.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
                 utils.save_image(
                         predict_noise,
                         f"{str(output_dir)}/predict_noise.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
             pbar.set_description(
                 (

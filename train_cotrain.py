@@ -254,42 +254,42 @@ def train(args, main_loader, mask_model, gatedconv, discriminator, mask_model_op
                         f"{str(output_dir)}/predict_masks.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(0, 1),
+                        value_range=(0, 1),
                     )
                 utils.save_image(
                         smooth_masks,
                         f"{str(output_dir)}/masks.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(0, 1),
+                        value_range=(0, 1),
                     )
                 utils.save_image(
                         corrupt_img,
                         f"{str(output_dir)}/corrupt_img.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
                 utils.save_image(
                         output,
                         f"{str(output_dir)}/complete.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
                 utils.save_image(
                         predict_imgs,
                         f"{str(output_dir)}/predict.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
                 utils.save_image(
                         imgs,
                         f"{str(output_dir)}/imgs.png",
                         nrow=int(4),
                         normalize=True,
-                        range=(-1, 1),
+                        value_range=(-1, 1),
                     )
             pbar.set_description(
                 (

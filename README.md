@@ -12,10 +12,6 @@ git clone https://github.com/Lcy0307/Decontamination_Transformer.git
 cd Decontamination_Transformer
 ```
 
-- We provide a conda environment script, please run the following command after cloning our repo.
-```
-conda env create -f environment.yml
-```
 ## Datasets
 - FFHQ dataset: You can follow the instructions in FFHQ [website](https://github.com/NVlabs/ffhq-dataset) to download the FFHQ dataset.
 - CelebA-HQ dataset: You can follow the instructions in Large-scale CelebFaces Attributes [website](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) to download the CelebA dataset.
@@ -42,7 +38,7 @@ conda env create -f environment.yml
 - "./data_load/imagenet_test.txt"
 
 ## Training
-More instructions can be found in train.sh for other dataset. Our model is trained on an Single RTX 3090 GPU.
+More instructions can be found in train.sh for other dataset. Our model is trained on an Single RTX 3090 GPU. Noting that if you want to do the fair comparison, you need to retrain the model by your own dataset file list.
 #### Generating free-form mask of validation set
 We generate 1000 free-form mask for validation sets.
 ```
@@ -70,6 +66,11 @@ More instructions can be found in test.sh for other dataset.
 - Download the [pre-trained models](https://drive.google.com/drive/folders/17ge5uhZM6QD9i37PUPTpVTLdyMgygVCQ?usp=sharing).
 ```
 python test.py --dataset places2 --ckpt checkpoint/RRtrans_cotrain_all_loss_partial_noise_8_stroke_places2/checkpoint.pt
+```
+
+## Testing generalizability
+```
+python test_general.py --dataset places2 --ckpt checkpoint/RRtrans_cotrain_all_loss_partial_noise_8_stroke_places2/checkpoint.pt --mode 0
 ```
 
 

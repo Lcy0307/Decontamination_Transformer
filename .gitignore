@@ -8,3 +8,7 @@ reproduce
 reproduce_test.py
 data_load/
 preprocess_data.py
+out/
+environment.yml
+test_zip/
+*.pyc
