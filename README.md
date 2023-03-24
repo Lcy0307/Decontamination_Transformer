@@ -68,7 +68,7 @@ More instructions can be found in test.sh for other dataset.
 python test.py --dataset places2 --ckpt checkpoint/RRtrans_cotrain_all_loss_partial_noise_8_stroke_places2/checkpoint.pt
 ```
 
-## Testing generalizability
+### Testing generalizability
 ```
 python test_general.py --dataset places2 --ckpt checkpoint/RRtrans_cotrain_all_loss_partial_noise_8_stroke_places2/checkpoint.pt --mode 0
 ```
