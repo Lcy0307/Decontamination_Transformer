@@ -90,12 +90,12 @@ class Places2_noiseffhq_strokemask(Dataset):
         noise = Image.open(self.ffhq_np[rand]).convert('RGB')
         
         img = trns.CenterCrop(self.image_shape)(img)
-        img = trns.RandomHorizontalFlip()(img)
+        #img = trns.RandomHorizontalFlip()(img)
         img = trns.ToTensor()(img)
         img = self.normalize(img)
         
         noise = trns.Resize(self.image_shape,trns.InterpolationMode.BICUBIC)(noise)
-        noise = trns.RandomHorizontalFlip()(noise)
+        #noise = trns.RandomHorizontalFlip()(noise)
         noise = trns.ToTensor()(noise)
         noise = self.normalize(noise)
 
@@ -127,7 +127,7 @@ class ImageNet_noisecolor_strokemask(Dataset):
         img = Image.open(self.imagenet_np[index]).convert('RGB')
         
         img = trns.CenterCrop(self.image_shape)(img)
-        img = trns.RandomHorizontalFlip()(img)
+        #img = trns.RandomHorizontalFlip()(img)
         img = trns.ToTensor()(img)
         img = self.normalize(img)
         
@@ -176,11 +176,11 @@ class FFHQ_noisepc2_strokemask(Dataset):
         noise = trns.CenterCrop(self.image_shape)(noise)
         
         img = trns.Resize(self.image_shape,trns.InterpolationMode.BICUBIC)(img)
-        img = trns.RandomHorizontalFlip()(img)
+        #img = trns.RandomHorizontalFlip()(img)
         img = trns.ToTensor()(img)
         img = self.normalize(img)
         
-        noise = trns.RandomHorizontalFlip()(noise)
+        #noise = trns.RandomHorizontalFlip()(noise)
         noise = trns.ToTensor()(noise)
         noise = self.normalize(noise)
 
@@ -220,12 +220,12 @@ class Places2_irregularmask(Dataset):
         noise = Image.open(self.imagenet_np[rand]).convert('RGB')
         
         img = trns.CenterCrop(self.image_shape)(img)
-        img = trns.RandomHorizontalFlip()(img)
+        #img = trns.RandomHorizontalFlip()(img)
         img = trns.ToTensor()(img)
         img = self.normalize(img)
         
         noise = trns.CenterCrop(self.image_shape)(noise)
-        noise = trns.RandomHorizontalFlip()(noise)
+        #noise = trns.RandomHorizontalFlip()(noise)
         noise = trns.ToTensor()(noise)
         noise = self.normalize(noise)
 
@@ -266,12 +266,12 @@ class ImageNet_irregularmask(Dataset):
         img = Image.open(self.imagenet_np[index]).convert('RGB')
         
         img = trns.CenterCrop(self.image_shape)(img)
-        img = trns.RandomHorizontalFlip()(img)
+        #img = trns.RandomHorizontalFlip()(img)
         img = trns.ToTensor()(img)
         img = self.normalize(img)
         
         noise = trns.CenterCrop(self.image_shape)(noise)
-        noise = trns.RandomHorizontalFlip()(noise)
+        #noise = trns.RandomHorizontalFlip()(noise)
         noise = trns.ToTensor()(noise)
         noise = self.normalize(noise)
 
@@ -312,11 +312,11 @@ class FFHQ_irregularmask(Dataset):
         noise = trns.Resize(self.image_shape,trns.InterpolationMode.BICUBIC)(noise)
         
         img = trns.Resize(self.image_shape,trns.InterpolationMode.BICUBIC)(img)
-        img = trns.RandomHorizontalFlip()(img)
+        #img = trns.RandomHorizontalFlip()(img)
         img = trns.ToTensor()(img)
         img = self.normalize(img)
         
-        noise = trns.RandomHorizontalFlip()(noise)
+        #noise = trns.RandomHorizontalFlip()(noise)
         noise = trns.ToTensor()(noise)
         noise = self.normalize(noise)
 

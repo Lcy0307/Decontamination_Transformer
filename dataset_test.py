@@ -89,12 +89,12 @@ class Places2_strokemask(Dataset):
         noise = Image.open(self.imagenet_np[rand]).convert('RGB')
         
         img = trns.CenterCrop(self.image_shape)(img)
-        img = trns.RandomHorizontalFlip()(img)
+        #img = trns.RandomHorizontalFlip()(img)
         img = trns.ToTensor()(img)
         img = self.normalize(img)
         
         noise = trns.CenterCrop(self.image_shape)(noise)
-        noise = trns.RandomHorizontalFlip()(noise)
+        #noise = trns.RandomHorizontalFlip()(noise)
         noise = trns.ToTensor()(noise)
         noise = self.normalize(noise)
 
@@ -136,12 +136,12 @@ class ImageNet_strokemask(Dataset):
         img = Image.open(self.imagenet_np[index]).convert('RGB')
         
         img = trns.CenterCrop(self.image_shape)(img)
-        img = trns.RandomHorizontalFlip()(img)
+        #img = trns.RandomHorizontalFlip()(img)
         img = trns.ToTensor()(img)
         img = self.normalize(img)
         
         noise = trns.CenterCrop(self.image_shape)(noise)
-        noise = trns.RandomHorizontalFlip()(noise)
+        #noise = trns.RandomHorizontalFlip()(noise)
         noise = trns.ToTensor()(noise)
         noise = self.normalize(noise)
 
@@ -184,11 +184,11 @@ class FFHQ_strokemask(Dataset):
         noise = trns.Resize(self.image_shape,trns.InterpolationMode.BICUBIC)(noise)
         
         img = trns.Resize(self.image_shape,trns.InterpolationMode.BICUBIC)(img)
-        img = trns.RandomHorizontalFlip()(img)
+        #img = trns.RandomHorizontalFlip()(img)
         img = trns.ToTensor()(img)
         img = self.normalize(img)
         
-        noise = trns.RandomHorizontalFlip()(noise)
+        #noise = trns.RandomHorizontalFlip()(noise)
         noise = trns.ToTensor()(noise)
         noise = self.normalize(noise)
 
