@@ -63,7 +63,7 @@ python train_cotrain.py --dataset places2 --inpaint_ckpt RRtrans_gtmask_8_places
 ## Testing
 More instructions can be found in test.sh for other dataset.
 ### Using the pre-trained models
-- Download the [pre-trained models](https://drive.google.com/drive/folders/17ge5uhZM6QD9i37PUPTpVTLdyMgygVCQ?usp=sharing).
+- Download the [pre-trained models](https://drive.google.com/drive/folders/ 17ge5uhZM6QD9i37PUPTpVTLdyMgygVCQ?usp=sharing) and put it in the checkpoint folder.
 ```
 python test.py --dataset places2 --ckpt checkpoint/RRtrans_cotrain_all_loss_partial_noise_8_stroke_places2/checkpoint.pt
 ```

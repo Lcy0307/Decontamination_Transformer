@@ -1,5 +1,5 @@
 # FFHQ
-#python test.py --dataset ffhq --ckpt checkpoint/RRtrans_cotrain_all_loss_partial_noise_8_stroke_ffhq/checkpoint.pt
+#python test.py --dataset ffhq --ckpt checkpoint/RRtrans_cotrain_ffhq/checkpoint.pt
 
 
 # Places2
