@@ -78,4 +78,4 @@ python test_general.py --dataset places2 --ckpt checkpoint/RRtrans_cotrain_all_l
 Our code is based on [stylegan2-pytorch](https://github.com/rosinality/stylegan2-pytorch).
 - The implementation of the gated convolution is borrowed from [GatedConvolution_pytorch](https://github.com/avalonstrel/GatedConvolution_pytorch).
 - The implementation of the intra/inter attention is borrowed from [Stripformer](https://github.com/pp00704831/Stripformer).
-- The implementation of the MPN is based on [Re - VCNet: A Robust Approach to Blind Image Inpainting](https://github.com/birdortyedi/vcnet-blind-image-inpainting).
+- The implementation of the MPN and Discriminator are based on [Re - VCNet: A Robust Approach to Blind Image Inpainting](https://github.com/birdortyedi/vcnet-blind-image-inpainting).
