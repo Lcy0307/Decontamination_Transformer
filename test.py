@@ -69,7 +69,7 @@ if __name__ == "__main__":
         main_dataset = ImageNet_strokemask()
     data_loader_test = torch.utils.data.DataLoader(
         main_dataset,
-        batch_size=20,
+        batch_size=1,
         num_workers=10,
         shuffle=False
     )

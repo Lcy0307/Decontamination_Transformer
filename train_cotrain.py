@@ -106,14 +106,14 @@ def train(args, main_loader, mask_model, gatedconv, discriminator, mask_model_op
 
     loss_dict = {}
 
-    if args.distributed:
-        gatedconv_module = gatedconv.module
-        mask_model_module = mask_model
+    # if args.distributed:
+    #     gatedconv_module = gatedconv.module
+    #     mask_model_module = mask_model
 
-    else:
-        gatedconv_module = gatedconv
-        discriminator_module = discriminator
-        mask_model_module = mask_model
+    # else:
+    gatedconv_module = gatedconv
+    discriminator_module = discriminator
+    mask_model_module = mask_model
 
 
     for idx in pbar:
@@ -373,13 +373,13 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
-    n_gpu = int(os.environ["WORLD_SIZE"]) if "WORLD_SIZE" in os.environ else 1
-    args.distributed = n_gpu > 1
+    # n_gpu = int(os.environ["WORLD_SIZE"]) if "WORLD_SIZE" in os.environ else 1
+    # args.distributed = n_gpu > 1
 
-    if args.distributed:
-        torch.cuda.set_device(args.local_rank)
-        torch.distributed.init_process_group(backend="nccl", init_method="env://")
-        synchronize()
+    # if args.distributed:
+    #     torch.cuda.set_device(args.local_rank)
+    #     torch.distributed.init_process_group(backend="nccl", init_method="env://")
+    #     synchronize()
 
     args.start_iter = 0
 
@@ -440,27 +440,27 @@ if __name__ == "__main__":
         mask_model.load_state_dict(ckpt["mask_model"])
         
 
-    if args.distributed:
-        gatedconv = nn.parallel.DistributedDataParallel(
-            gatedconv,
-            device_ids=[args.local_rank],
-            output_device=args.local_rank,
-            broadcast_buffers=False,
-        )
+    # if args.distributed:
+    #     gatedconv = nn.parallel.DistributedDataParallel(
+    #         gatedconv,
+    #         device_ids=[args.local_rank],
+    #         output_device=args.local_rank,
+    #         broadcast_buffers=False,
+    #     )
 
-        mask_model = nn.parallel.DistributedDataParallel(
-            mask_model,
-            device_ids=[args.local_rank],
-            output_device=args.local_rank,
-            broadcast_buffers=False,
-        )
+    #     mask_model = nn.parallel.DistributedDataParallel(
+    #         mask_model,
+    #         device_ids=[args.local_rank],
+    #         output_device=args.local_rank,
+    #         broadcast_buffers=False,
+    #     )
         
-        discriminator = nn.parallel.DistributedDataParallel(
-            discriminator,
-            device_ids=[args.local_rank],
-            output_device=args.local_rank,
-            broadcast_buffers=False,
-        )
+    #     discriminator = nn.parallel.DistributedDataParallel(
+    #         discriminator,
+    #         device_ids=[args.local_rank],
+    #         output_device=args.local_rank,
+    #         broadcast_buffers=False,
+    #     )
 
     output_dir = Path(args.output_dir)
     output_dir.mkdir(exist_ok=True)
@@ -482,7 +482,7 @@ if __name__ == "__main__":
     main_loader = data.DataLoader(
         main_dataset,
         batch_size=args.batch,
-        sampler=data_sampler(main_dataset, shuffle=True, distributed=args.distributed),
+        sampler=data_sampler(main_dataset, shuffle=True, distributed=False),
         num_workers=10,
         drop_last=True,
     )
