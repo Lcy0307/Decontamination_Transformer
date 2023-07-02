@@ -323,7 +323,7 @@ def train(args, main_loader, mask_model, gatedconv, discriminator, mask_model_op
 
 
 if __name__ == "__main__":
-    device = "cuda"
+    device = "cuda:0"
 
     parser = argparse.ArgumentParser(description="Cotrain_gated trainer")
     parser.add_argument('--arch', type=str, default='Gated')

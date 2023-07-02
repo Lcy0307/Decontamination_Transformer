@@ -307,7 +307,7 @@ def train(args, main_loader, gatedconv, discriminator, gatedconv_optim, optimize
 
 
 if __name__ == "__main__":
-    device = "cuda"
+    device = "cuda:0"
 
     parser = argparse.ArgumentParser(description="Cotrain_gated trainer")
     parser.add_argument('--arch', type=str, default='Gated')
